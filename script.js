@@ -21,7 +21,30 @@ function cobrinha(){
     }
 }
 
+document.addEventListener('keydown', update);
+
+function update(event){
+    if(event.keyCode == 37 &&  direction!="right"){
+        direction = "left"}
+    
+    if(event.keyCode == 38 &&  direction!="up"){
+        direction = "down"}
+    
+    if(event.keyCode == 39 &&  direction!="left"){
+        direction = "right"}
+    
+    if(event.keyCode == 40 &&  direction!="down"){
+        direction = "up"}
+    
+}
+
 function iniciarJogo(){
+    if(cobra[0].x > 15 * box && direction == "right"){ cobra[0].x = 0;}
+    if(cobra[0].x < 0  && direction == "left"){ cobra[0].x = 16 * box;}
+    if(cobra[0].y > 15 * box && direction == "up"){ cobra[0].y = 0;}
+    if(cobra[0].y < 0  && direction == "down"){ cobra[0].y = 16 * box;}
+    
+
     criarBG();
     cobrinha();
 
