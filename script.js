@@ -53,6 +53,12 @@ function iniciarJogo(){
     if(cobra[0].y > 15 * box && direction == "up"){ cobra[0].y = 0;}
     if(cobra[0].y < 0  && direction == "down"){ cobra[0].y = 16 * box;}
     
+    for(i = 1; i<cobra.length; i++){
+        if(cobra[0].x == cobra[i].x && cobra[0].y == cobra[i].y ){
+            clearInterval(jogo);
+            alert("Você morreu");
+        }
+    }
 
     criarBG();
     cobrinha();
@@ -75,7 +81,15 @@ function iniciarJogo(){
         cobray -= box;
     }
 
-    cobra.pop();
+    if(cobrax != food.x || cobray != food.y){
+        cobra.pop();
+    }
+    else{
+    food.x = Math.floor(Math.random() * 15 + 1) * box;
+    food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
+
+   
 
     let newHead = {
         x: cobrax,
