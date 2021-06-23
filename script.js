@@ -7,6 +7,8 @@ cobra[0]= {
     y: 8 * box
 }
 
+let direction = "right";
+
 function criarBG(){
     context.fillStyle = "lightgreen"
     context.fillRect(0, 0, 16 * box, 16 * box);
@@ -19,5 +21,34 @@ function cobrinha(){
     }
 }
 
-criarBG();
-cobrinha();
+function iniciarJogo(){
+    criarBG();
+    cobrinha();
+
+    let cobrax = cobra[0].x;
+    let cobray = cobra[0].y;
+
+    if(direction=="right"){
+        cobrax += box;
+    }
+    if(direction=="left"){
+        cobrax -= box;
+    }
+
+    if(direction=="up"){
+        cobray += box;
+    }
+    if(direction=="down"){
+        cobray -= box;
+    }
+
+    cobra.pop();
+
+    let newHead = {
+        x: cobrax,
+        y: cobray
+    }
+    cobra.unshift(newHead);
+}
+
+let jogo = setInterval(iniciarJogo, 100);
